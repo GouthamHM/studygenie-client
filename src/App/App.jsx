@@ -38,11 +38,11 @@ class App extends React.Component {
                         <Router history={history}>
                             <div>
                                 <PrivateRoute exact path="/" component={HomePage} />
-                                <Route path="/login" component={LoginPage} />
-                                <Route path="/register" component={RegisterPage} />
-                                <Route path="/weeklyheatmap" component={HeatMap} />
-                                <Route path="/upvotetrend" component={UpVoteTrend}/>
-                                <Route path="/notes" render={()=>(<Notes/>)}/>
+                                <PrivateRoute path="/login" component={LoginPage} />
+                                <PrivateRoute path="/register" component={RegisterPage} />
+                                <PrivateRoute path="/weeklyheatmap" component={HeatMap} />
+                                <PrivateRoute path="/upvotetrend" component={UpVoteTrend}/>
+                                <PrivateRoute path="/notes" render={()=>(<Notes/>)}/>
                             </div>
                         </Router>
                     </div>
