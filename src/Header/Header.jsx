@@ -15,9 +15,9 @@ class Header extends  React.Component{
   </Navbar.Header>
   <Nav>
     <NavItem eventKey={1} >
-      <Link to="/notes">Notes</Link>
+      <Link to="./notes">Notes</Link>
     </NavItem>
-    <NavItem eventKey={2} href ="/upvotetrend" >
+    <NavItem eventKey={2} href ="./upvotetrend" >
         Search
     </NavItem>
     <NavItem eventKey={3} href="/weeklyheatmap">
