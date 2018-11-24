@@ -1,5 +1,9 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
+// import {
+//     HashRouter as Router,
+//     Route,
+//     } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { history } from '../_helpers';
@@ -38,7 +42,7 @@ class App extends React.Component {
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/weeklyheatmap" component={HeatMap} />
                                 <Route path="/upvotetrend" component={UpVoteTrend}/>
-                                <Route path="/notes" component={Notes}/>
+                                <Route path="/notes" render={()=>(<Notes/>)}/>
                             </div>
                         </Router>
                     </div>
