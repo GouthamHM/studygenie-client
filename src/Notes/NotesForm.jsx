@@ -49,9 +49,10 @@ class  NotesForm extends React.Component {
      
       
     submitChange(){
-      this.props.closeMethod();
+      
       const { dispatch } = this.props;
       dispatch(userActions.editNote(this.state));
+      //this.props.closeMethod();
   
     }
     render(){
