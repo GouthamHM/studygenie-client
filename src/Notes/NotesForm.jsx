@@ -52,6 +52,7 @@ class  NotesForm extends React.Component {
       
       const { dispatch } = this.props;
       dispatch(userActions.editNote(this.state));
+      debugger;
       //this.props.closeMethod();
   
     }
