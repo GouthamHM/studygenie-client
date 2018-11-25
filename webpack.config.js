@@ -41,6 +41,7 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'https://ba78av6mv8.execute-api.us-east-1.amazonaws.com/latest/api'
+            //apiUrl: 'http://localhost:3000/api'
         })
     }
 };

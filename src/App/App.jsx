@@ -42,7 +42,7 @@ class App extends React.Component {
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/weeklyheatmap" component={HeatMap} />
                                 <Route path="/upvotetrend" component={UpVoteTrend}/>
-                                <Route path="/notes" render={()=>(<Notes/>)}/>
+                                <Route path="/notes" component={Notes}/>
                             </div>
                         </Router>
                     </div>

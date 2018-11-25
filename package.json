@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --open",
-    "build": "webpack"
+    "build": "webpack && cp dist/index.html dist/200.html"
   },
   "dependencies": {
     "@material-ui/icons": "^3.0.1",
