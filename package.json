@@ -11,8 +11,10 @@
     "build": "webpack && cp dist/index.html dist/200.html"
   },
   "dependencies": {
+    "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
     "@webscopeio/react-markdown-editor": "^1.0.4",
+    "css-loader": "^1.0.1",
     "github-markdown-css": "^2.10.0",
     "history": "^4.6.3",
     "human-date": "^1.4.0",
@@ -38,6 +40,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "shadow": "0.0.1",
+    "style-loader": "^0.23.1",
     "universal-cookie": "^3.0.4"
   },
   "devDependencies": {
