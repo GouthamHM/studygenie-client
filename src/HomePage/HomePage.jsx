@@ -32,6 +32,7 @@ class HomePage extends React.Component {
         return (e) => this.props.dispatch(userActions.delete(id));
     }
     render() {
+        const { user } = this.props;
         return (
             <div>
             <Header/>
