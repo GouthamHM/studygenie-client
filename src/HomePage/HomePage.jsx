@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../_actions';
 import { Header } from '../Header/Header';
+import NotesForm from '../Notes/NotesForm'
 class TimeDispaly extends  React.Component{
     constructor(props) {
         super(props);
@@ -20,17 +21,17 @@ class TimeDispaly extends  React.Component{
     }
 
 }
-
 class HomePage extends React.Component {
     componentDidMount() {
         this.props.dispatch(userActions.getAll());
     }
-
+    constructor(props) {
+        super(props);
+    }
     handleDeleteUser(id) {
         return (e) => this.props.dispatch(userActions.delete(id));
     }
     render() {
-        const { user, users } = this.props;
         return (
             <div>
             <Header/>
@@ -39,19 +40,16 @@ class HomePage extends React.Component {
                 <h2>Hi {user.firstName}!</h2>
                 <p>Welcome to Study Genie</p>
                 <p>Smart note taker and Cheat sheet creator</p>
-                <h3>Your Login History: </h3>
-                {users.loading && <em>Loading users...</em>}
-                {users.error && <span className="text-danger">ERROR: {users.error}</span>}
-                {users.items &&
-                    <ul>
-                        {users.items.map((login, index) =>
-                            <li key={login._id}>
-                                <ul>{login.time}</ul>
-                                {/*<TimeDispaly value = {login.time}/>*/}
-                            </li>
-                        )}
-                    </ul>
-                }
+                <h3>Add your notes</h3>
+                <NotesForm 
+                  type={'add'}
+                  initials={''} 
+                  className={''}
+                  id = {''}
+                  date={''}
+                  title ={''}
+                  mdText = {''}
+                  /> 
             </div>
             </div>
         );

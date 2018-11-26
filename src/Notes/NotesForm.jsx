@@ -35,12 +35,8 @@ class  NotesForm extends React.Component {
         }
         this.converter = new showdown.Converter()
         this.handleChange = this.handleChange.bind(this);
-        //this.handleChange2 = this.handleChange2.bind(this);
-       //this.submitChange = this.submitChange.bind(this);
     }
     componentDidMount() {
-      console.log(this.props);
-      console.log(this.state);
       this.setState(this.props);
     }
     handleChange (event) {
@@ -49,11 +45,13 @@ class  NotesForm extends React.Component {
      
       
     submitChange(){
-      
       const { dispatch } = this.props;
+      if (this.state.type=='edit'){
       dispatch(userActions.editNote(this.state));
-      debugger;
-      //this.props.closeMethod();
+      }
+      else if(this.state.type=='add'){
+        dispatch(userActions.addNote(this.state));
+      }
   
     }
     render(){
@@ -92,10 +90,10 @@ class  NotesForm extends React.Component {
                   />
           </Col>
           </Row>
-          <Row>
-            <Button
+          <Row> 
+             <Button
             onClick={(e) => this.submitChange(e)}>Submit</Button>
-            </Row>
+            </Row> 
           </div>
         );
     }

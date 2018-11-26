@@ -14,6 +14,7 @@ export const userService = {
     getById,
     update,
     editNote,
+    addNote,
     deleteNote,
     delete: _delete
 };
@@ -80,7 +81,6 @@ function getAllVotes() {
     return fetch(`${config.apiUrl}/votes`, requestOptions).then(handleResponse);
 }
 function getAllNotes() {
-    console.log("in gell All notes services");
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
@@ -115,6 +115,15 @@ function update(user) {
     };
 
     return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
+}
+function addNote(note) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(note)
+    };
+
+    return fetch(`${config.apiUrl}/notes/`, requestOptions).then(handleResponse);;
 }
 function editNote(note) {
     const requestOptions = {

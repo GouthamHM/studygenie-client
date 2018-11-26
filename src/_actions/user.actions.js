@@ -13,6 +13,7 @@ export const userActions = {
     getAllVotes,
     getAllNotes,
     editNote,
+    addNote,
     deleteNote,
     delete: _delete
 };
@@ -66,17 +67,34 @@ function register(user) {
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
+function addNote(note) {
+    return dispatch => {
+        dispatch(request(note));
+        userService.addNote(note)
+            .then(
+                user => { 
+                    dispatch(success());
+                    window.location.reload();
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    //dispatch(alertActions.error(error.toString()));
+                }
+            );
+    };
 
+    function request(user) { return { type: userConstants.NOTE_REQUEST, user } }
+    function success(user) { return { type: userConstants.NOTE_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.NOTE_FAILURE, error } }
+}
 function editNote(note) {
-    console.log(note);
     return dispatch => {
         dispatch(request(note));
         userService.editNote(note)
             .then(
                 user => { 
                     dispatch(success());
-                   // history.push('/login');
-                    //dispatch(alertActions.success('Registration successful'));
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -90,19 +108,16 @@ function editNote(note) {
     function failure(error) { return { type: userConstants.NOTE_FAILURE, error } }
 }
 function deleteNote(note) {
-    console.log(note);
     return dispatch => {
         dispatch(request(note));
         userService.deleteNote(note)
             .then(
                 user => { 
                     dispatch(success());
-                   // history.push('/login');
-                    //dispatch(alertActions.success('Registration successful'));
+                    window.location.reload();
                 },
                 error => {
                     dispatch(failure(error.toString()));
-                    //dispatch(alertActions.error(error.toString()));
                 }
             );
     };
@@ -172,7 +187,6 @@ function getAllVotes() {
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
 function getAllNotes() {
-    console.log("in gell All notes actions");
     return dispatch => {
         dispatch(request());
 

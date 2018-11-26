@@ -56,20 +56,14 @@ class RecipeReviewCard extends React.Component {
     super(props);
     this.state = { expanded: false, open:false };
     this.converter = new showdown.Converter();
-    this.closeMethod = this.closeMethod.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
   }
   handleExpandClick(){
     this.setState({ expanded: !this.state.expanded });
   };
-  closeMethod(){
-    close();
-    window.location.reload();
-  }
   deleteNote(){
     const { dispatch } = this.props;
     dispatch(userActions.deleteNote(this.props));
-    window.location.reload();
   }
   render() {
     const { classes } = this.props;
@@ -107,13 +101,13 @@ class RecipeReviewCard extends React.Component {
                   >
                   {close => (
                   <NotesForm
+                  type={'edit'}
                   initials={this.props.initials} 
                   className={this.props.className}
                   id = {this.props.id}
                   date={this.props.date}
                   title ={this.props.title}
                   mdText = {this.props.mdText}
-                  closeMethod = {this.closeMethod}
                   />
                   )}
         </Popup>
