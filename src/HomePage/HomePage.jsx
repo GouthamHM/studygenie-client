@@ -23,7 +23,8 @@ class TimeDispaly extends  React.Component{
 }
 class HomePage extends React.Component {
     componentDidMount() {
-        this.props.dispatch(userActions.getAll());
+        //this.props.dispatch(userActions.getAll());
+        this.props.dispatch(userActions.getClasses());
     }
     constructor(props) {
         super(props);
@@ -32,7 +33,7 @@ class HomePage extends React.Component {
         return (e) => this.props.dispatch(userActions.delete(id));
     }
     render() {
-        const { user } = this.props;
+        const { user ,classes} = this.props;
         return (
             <div>
             <Header/>
@@ -42,6 +43,9 @@ class HomePage extends React.Component {
                 <p>Welcome to Study Genie</p>
                 <p>Smart note taker and Cheat sheet creator</p>
                 <h3>Add your notes</h3>
+                {classes.loading && <em>Loading users...</em>}
+                {classes.error && <span className="text-danger">ERROR: {classes.error}</span>}
+                {classes.items &&
                 <NotesForm 
                   type={'add'}
                   initials={''} 
@@ -50,7 +54,9 @@ class HomePage extends React.Component {
                   date={''}
                   title ={''}
                   mdText = {''}
+                  classes_list = {classes}
                   /> 
+                }
             </div>
             </div>
         );
@@ -58,11 +64,11 @@ class HomePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { users,authentication } = state;
+    const { classes,authentication } = state;
     const { user } = authentication;
     return {
         user,
-        users,
+        classes
     };
 }
 

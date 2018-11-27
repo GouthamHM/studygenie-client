@@ -108,6 +108,7 @@ class RecipeReviewCard extends React.Component {
                   date={this.props.date}
                   title ={this.props.title}
                   mdText = {this.props.mdText}
+                  classes_list = {{items:[]}}
                   />
                   )}
         </Popup>

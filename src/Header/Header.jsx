@@ -14,8 +14,8 @@ class Header extends  React.Component{
     </Navbar.Brand>
   </Navbar.Header>
   <Nav>
-    <NavItem eventKey={1} >
-    <Link to="/notes">Notes</Link>
+    <NavItem eventKey={1} href ="./notes">
+    Notes
     </NavItem>
     <NavItem eventKey={2} href ="./upvotetrend" >
         Search

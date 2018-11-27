@@ -11,6 +11,7 @@ import {Row,Col,Button} from 'react-bootstrap';
 import './new.css';
 import ReactMarkdownEditor from '@webscopeio/react-markdown-editor';
 import { userActions } from '../_actions';
+import Select from '@material-ui/core/Select';
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -31,19 +32,25 @@ class  NotesForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            className: 'CSE 510'
+            className: 'CSE 510',
+            select_class:'',
+            selected_class:'',
+            classId:''
         }
         this.converter = new showdown.Converter()
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSelectionChange = this.handleSelectionChange.bind(this);
     }
     componentDidMount() {
       this.setState(this.props);
     }
-    handleChange (event) {
-        this.setState({className: event.target.value});
-      }
+    
      
-      
+    handleSelectionChange(event){
+        let li = event.target.value.split('_');
+        this.setState({ select_class: event.target.value,
+          selected_class: li[0],
+          classId:li[1]});
+    }
     submitChange(){
       const { dispatch } = this.props;
       if (this.state.type=='edit'){
@@ -55,19 +62,35 @@ class  NotesForm extends React.Component {
   
     }
     render(){
-        const { classes } = this.props;
+        const { classes_list} = this.props;
+        const{type} = this.state;
+        let edit = false;
+        if (type == 'edit'){
+          edit = true
+        }
         return (
                 <div>
         <Row className="show-grid">
             <Col xs={12} md={6} >
-                  <label>Class name: {this.state.className}</label>
+                  {edit && <label>Class name: {this.state.className}</label>}
+                  {!edit && 
+                        <div>
+                        <label>Select Class</label>
+                        <Select
+                        value={this.state.select_class}
+                        onChange={(e) => this.handleSelectionChange(e)}>
+                          {classes_list.items.map((class_name, index) =>
+                              <option value={class_name.className+'_'+class_name._id}>{class_name.className}</option>
+                          )}
+                        </Select>
+                        </div>
+                    }
             </Col>
             <Col xs={12} md={6} >
             <TextField
                 id="standard-dense"
                 label="Title"
                 value = {this.state.title}
-                className={classNames(classes.textField, classes.dense)}
                 margin="dense"
                 onChange={({ target: { value } }) => this.setState({ title:value })}
               />

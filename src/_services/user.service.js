@@ -15,6 +15,7 @@ export const userService = {
     update,
     editNote,
     addNote,
+    getAllClasses,
     deleteNote,
     delete: _delete
 };
@@ -87,6 +88,14 @@ function getAllNotes() {
     };
 
     return fetch(`${config.apiUrl}/notes`, requestOptions).then(handleResponse);
+}
+function getAllClasses() {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`${config.apiUrl}/class`, requestOptions).then(handleResponse);
 }
 function getById(id) {
     const requestOptions = {

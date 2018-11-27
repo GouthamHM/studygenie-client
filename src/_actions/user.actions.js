@@ -12,6 +12,7 @@ export const userActions = {
     getAllViews,
     getAllVotes,
     getAllNotes,
+    getClasses,
     editNote,
     addNote,
     deleteNote,
@@ -68,6 +69,7 @@ function register(user) {
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
 }
 function addNote(note) {
+    note.className = note.selected_class;
     return dispatch => {
         dispatch(request(note));
         userService.addNote(note)
@@ -198,6 +200,20 @@ function getAllNotes() {
     };
     function request() { return { type: userConstants.GETALL_REQUEST } }
     function success(notes) { return { type: userConstants.GETALL_SUCCESS, notes } }
+    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
+}
+function getClasses() {
+    return dispatch => {
+        dispatch(request());
+
+        userService.getAllClasses()
+            .then(
+                classes => dispatch(success(classes)),
+                error => dispatch(failure(error.toString()))
+            );
+    };
+    function request() { return { type: userConstants.GETALL_REQUEST } }
+    function success(classes) { return { type: userConstants.GETALL_SUCCESS, classes } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
 }
 // prefixed function name with underscore because delete is a reserved word in javascript

@@ -7,6 +7,7 @@ import { tags } from './tags.reducer';
 import { views } from './view.reducer';
 import { votes } from './vote.reducer';
 import { notes } from './note.reducer';
+import { classes } from './class.reducer';
 import { alert } from './alert.reducer';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     views,
     votes,
     notes,
+    classes,
   alert
 });
 
